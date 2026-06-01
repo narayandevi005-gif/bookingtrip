@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>McLeodganj Triund Dharamkot Trip Booking</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f5f7fa;
+color:#333;
+line-height:1.6;
+}
+
+.hero{
+background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
+url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee');
+background-size:cover;
+background-position:center;
+height:60vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+padding:20px;
+}
+
+.hero h1{
+font-size:3rem;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:1.2rem;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:40px 20px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+margin-bottom:25px;
+}
+
+h2{
+color:#0d4f8b;
+margin-bottom:15px;
+}
+
+.timeline{
+padding-left:20px;
+}
+
+.timeline li{
+margin-bottom:12px;
+}
+
+.price-box{
+text-align:center;
+background:#0d4f8b;
+color:white;
+padding:30px;
+border-radius:15px;
+}
+
+.price-box h3{
+font-size:2rem;
+margin-bottom:10px;
+}
+
+.price{
+font-size:3rem;
+font-weight:bold;
+}
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+@media(max-width:768px){
+.form-grid{
+grid-template-columns:1fr;
+}
+.hero h1{
+font-size:2rem;
+}
+}
+
+input,select,textarea{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+margin-top:6px;
+}
+
+label{
+font-weight:600;
+}
+
+textarea{
+height:100px;
+}
+
+.submit-btn{
+width:100%;
+padding:15px;
+background:#ff6b00;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+margin-top:20px;
+}
+
+.submit-btn:hover{
+background:#e45f00;
+}
+
+.note{
+background:#fff7e6;
+border-left:5px solid orange;
+padding:15px;
+margin-top:15px;
+}
+
+footer{
+background:#111;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:40px;
+}
+</style>
+
+</head>
+<body>
+
+<section class="hero">
+<div>
+<h1>McLeodganj • Triund • Dharamkot</h1>
+<p>Adventure Trip | 19 June 2026 - 23 June 2026</p>
+</div>
+</section>
+
+<div class="container">
+
+<div class="card">
+<h2>🌄 Trip Overview</h2>
+<p>
+Experience the beauty of Himachal Pradesh with an unforgettable journey to
+McLeodganj, Triund Trek, Dharamkot, Bhagsu Waterfall and Naddi View Point.
+</p>
+</div>
+
+<div class="card">
+<h2>📅 Trip Itinerary</h2>
+
+<ul class="timeline">
+<li><strong>19 June:</strong> Departure from Delhi (Overnight Volvo)</li>
+
+<li><strong>20 June:</strong> Arrival at McLeodganj, Check-in, Local Sightseeing</li>
+
+<li><strong>21 June:</strong> Triund Trek & Camping</li>
+
+<li><strong>22 June:</strong> Sunrise, Return Trek, Dharamkot Exploration</li>
+
+<li><strong>23 June:</strong> Breakfast, Check-out & Return Journey</li>
+</ul>
+</div>
+
+<div class="price-box">
+<h3>Minimum Booking Amount</h3>
+<div class="price">₹2,000</div>
+<p>Per Person</p>
+</div>
+
+<br>
+
+<div class="card">
+<h2>👤 Traveller & Payment Registration</h2>
+
+<form id="bookingForm" method="POST">
+
+<!-- GUARDIAN/BOOKING PERSON SECTION -->
+<h3 style="color:#0d4f8b; margin-top:20px; margin-bottom:15px;">Booking Person Details</h3>
+
+<div class="form-grid">
+
+<div>
+<label>Full Name *</label>
+<input type="text" name="guardian_name" required>
+</div>
+
+<div>
+<label>Mobile Number *</label>
+<input type="tel" name="guardian_mobile" required>
+</div>
+
+<div>
+<label>WhatsApp Number *</label>
+<input type="tel" name="guardian_whatsapp" required>
+</div>
+
+<div>
+<label>Email Address *</label>
+<input type="email" name="guardian_email" required>
+</div>
+
+<div>
+<label>City *</label>
+<input type="text" name="city" required>
+</div>
+
+<div>
+<label>Emergency Contact Number</label>
+<input type="tel" name="emergency_contact">
+</div>
+
+<div>
+<label>Number of Persons *</label>
+<input type="number" name="number_of_persons" id="number_of_persons" min="1" step="1" value="1" required>
+<div id="priceInfo" style="margin-top:10px;font-weight:600;color:#0d4f8b;">Per Person: ₹2,000 | Total: ₹2,000</div>
+</div>
+
+</div>
+
+<label style="margin-top:15px;">Medical Information (if any)</label>
+<textarea name="medical_info" style="height:80px;"></textarea>
+
+<!-- UPI PAYMENT SECTION -->
+<h3 style="color:#0d4f8b; margin-top:30px; margin-bottom:15px;">💳 UPI Payment Details</h3>
+
+<div style="background:#e8f5e9; padding:20px; border-radius:8px; margin-bottom:20px; border-left:4px solid #4caf50;">
+<p style="font-weight:600; margin-bottom:10px;">📱 Payment Instructions:</p>
+<p>1. Pay ₹2,000 per person via UPI to: <strong>8447919303@ptsbi</strong> or scan QR code below</p>
+<p>2. Upload the payment screenshot below</p>
+<p>3. Fill in the transaction ID for verification</p>
+<div style="text-align:center; margin-top:20px;">
+<img src="qrcode.png" alt="UPI Payment QR Code" style="width:200px; height:200px; border:2px solid #0d4f8b; border-radius:8px; padding:10px; background:white;">
+</div>
+</div>
+
+<div class="form-grid">
+
+<div>
+<label>UPI ID Used for Payment *</label>
+<input type="text" name="upi_id" placeholder="example@paytm or 9876543210@upi" required>
+</div>
+
+<div>
+<label>Transaction ID / Reference Number *</label>
+<input type="text" name="transaction_id" placeholder="UTR or Transaction ID" required>
+</div>
+
+</div>
+
+<div>
+<label>Upload Payment Screenshot *</label>
+<input type="file" name="payment_screenshot" accept="image/*" required style="padding:10px; border:2px dashed #0d4f8b;">
+</div>
+
+<div>
+<label>Transaction Amount (₹) *</label>
+<input type="number" name="amount_paid" min="2000" step="100" placeholder="2000" required>
+</div>
+
+<div class="note">
+<strong>✓ Payment Confirmation:</strong>
+Booking will be confirmed only after successful verification of payment of ₹2,000 per person.
+Payment details and persons information will be logged and sent to you via WhatsApp/Email.
+</div>
+
+<button type="submit" class="submit-btn">
+Complete Booking & Submit Payment ₹2,000
+</button>
+
+</form>
+</div>
+
+</div>
+
+<footer>
+© 2026 Adventure Trips | McLeodganj • Triund • Dharamkot
+</footer>
+
+<script>
+// Helper function to resolve API URL
+function resolveFormApiUrl() {
+    try {
+        const origin = window.location.origin;
+        if (!origin || origin === 'null' || location.protocol === 'file:') {
+            return 'http://localhost:10000';
+        }
+        return origin;
+    } catch (err) {
+        return 'http://localhost:10000';
+    }
+}
+
+// Helper function to send to backend with fallback
+async function submitBookingToBackend(bookingData) {
+    const primaryUrl = (resolveFormApiUrl() || 'http://localhost:10000') + '/api/bookings';
+    const fallbackUrl = 'http://localhost:10000/api/bookings';
+    
+    try {
+        const response = await fetch(primaryUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(bookingData)
+        });
+        
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response;
+    } catch (primaryErr) {
+        console.warn('Primary URL failed, trying fallback:', primaryErr);
+        if (primaryUrl !== fallbackUrl) {
+            const fallbackResponse = await fetch(fallbackUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(bookingData)
+            });
+            if (!fallbackResponse.ok) throw new Error(`Fallback HTTP ${fallbackResponse.status}`);
+            return fallbackResponse;
+        }
+        throw primaryErr;
+    }
+}
+
+document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Prepare form data
+    const formData = new FormData(this);
+    const numPersons = parseInt(formData.get('number_of_persons') || '1', 10);
+    const amountPaid = parseFloat(formData.get('amount_paid'));
+    const requiredAmount = numPersons * 2000;
+
+    if (amountPaid < requiredAmount) {
+        alert(`❌ Minimum payment amount is ₹${requiredAmount} for ${numPersons} person(s). Please enter the correct amount.`);
+        return;
+    }
+    
+    // Create data object for logging
+    const bookingData = {
+        timestamp: new Date().toISOString(),
+        guardian: {
+            name: formData.get('guardian_name'),
+            mobile: formData.get('guardian_mobile'),
+            whatsapp: formData.get('guardian_whatsapp'),
+            email: formData.get('guardian_email'),
+            city: formData.get('city'),
+            emergency_contact: formData.get('emergency_contact')
+        },
+        children: [],
+        payment: {
+            upi_id: formData.get('upi_id'),
+            transaction_id: formData.get('transaction_id'),
+            amount: formData.get('amount_paid'),
+            price_per_person: 2000,
+            num_children: numPersons,
+            num_persons: numPersons
+        },
+        medical_info: formData.get('medical_info')
+    };
+
+    const screenshotFile = this.querySelector('[name="payment_screenshot"]').files[0];
+    if (screenshotFile) {
+        bookingData.payment.payment_screenshot_name = screenshotFile.name;
+        bookingData.payment.payment_screenshot_data = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = () => reject(reader.error);
+            reader.readAsDataURL(screenshotFile);
+        });
+    }
+
+    
+    try {
+        // Log to console (visible in browser dev tools)
+        console.log('📋 NEW BOOKING RECEIVED:', bookingData);
+        
+        // Send to backend with fallback
+        let backendResponse = null;
+        try {
+            backendResponse = await submitBookingToBackend(bookingData);
+            console.log('✅ Booking sent to backend successfully');
+        } catch (backendErr) {
+            console.warn('⚠️ Backend not available, data saved locally:', backendErr);
+        }
+        
+        // Show success message
+        alert(`✅ BOOKING SUBMITTED SUCCESSFULLY!\n\n` +
+              `Guardian: ${bookingData.guardian.name}\n` +
+              `Persons: ${bookingData.payment.num_persons}\n` +
+              `Per Person: ₹${bookingData.payment.price_per_person}\n` +
+              `Amount Paid: ₹${bookingData.payment.amount}\n` +
+              `Transaction ID: ${bookingData.payment.transaction_id}\n\n` +
+              `You will receive confirmation on WhatsApp: ${bookingData.guardian.whatsapp}`);
+        
+        // Reset form
+        this.reset();
+        updatePriceInfo();
+        
+        // Log to localStorage for persistence
+        let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+        bookings.push(bookingData);
+        localStorage.setItem('bookings', JSON.stringify(bookings));
+        
+    } catch (error) {
+        console.error('Submission Error:', error);
+        alert('⚠️ Error submitting booking. Please try again or contact support.');
+    }
+});
+
+// Auto-format UPI ID
+const numberInput = document.getElementById('number_of_persons');
+const amountInput = document.querySelector('input[name="amount_paid"]');
+const priceInfo = document.getElementById('priceInfo');
+const submitButton = document.querySelector('.submit-btn');
+const PER_PERSON_PRICE = 2000;
+
+function updatePriceInfo() {
+    const persons = parseInt(numberInput.value || '1', 10);
+    const total = persons * PER_PERSON_PRICE;
+    priceInfo.textContent = `Per Person: ₹${PER_PERSON_PRICE} | Total: ₹${total}`;
+    submitButton.textContent = `Complete Booking & Submit Payment ₹${total}`;
+    if (amountInput && parseFloat(amountInput.value || '0') < total) {
+        amountInput.value = total;
+    }
+}
+
+numberInput.addEventListener('input', updatePriceInfo);
+updatePriceInfo();
+document.querySelector('input[name="upi_id"]').addEventListener('input', function(e) {
+    this.value = this.value.toLowerCase();
+});
+</script>
+
+</body>
+</html>

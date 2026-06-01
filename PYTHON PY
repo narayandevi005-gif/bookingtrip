@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Traveller Payment Gateway</title>
+	<style>
+		body{font-family:Arial,Helvetica,sans-serif;background:#f4f7fb;padding:20px}
+		.container{max-width:720px;margin:0 auto;background:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+		h1{font-size:20px;margin-bottom:10px}
+		label{display:block;margin-top:12px;font-size:13px}
+		input,select,textarea{width:100%;padding:10px;margin-top:6px;border:1px solid #d6dbe6;border-radius:4px;box-sizing:border-box}
+		.row{display:flex;gap:10px}
+		.row > *{flex:1}
+		.muted{font-size:12px;color:#6b7280}
+		.btn{background:#2563eb;color:#fff;padding:10px 14px;border:none;border-radius:6px;cursor:pointer;margin-top:16px}
+		.small{font-size:13px}
+		.inline{display:inline-block;width:auto}
+		.error{color:#b91c1c;font-size:13px}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Traveller Payment</h1>
+		<p class="muted">Fill guest and payment details to complete booking.</p>
+
+		<form id="paymentForm" action="#" method="POST" novalidate>
+			<label>Full name
+				<input type="text" name="fullname" id="fullname" placeholder="Jane Doe" required>
+			</label>
+
+			<div class="row">
+				<label class="small">Email
+					<input type="email" name="email" id="email" placeholder="you@domain.com" required>
+				</label>
+				<label class="small">Phone
+					<input type="tel" name="phone" id="phone" placeholder="+44 7000 000000">
+				</label>
+			</div>
+
+			<div class="row">
+				<label>Passport / ID
+					<input type="text" name="passport" id="passport" placeholder="Passport or ID number">
+				</label>
+				<label>Nationality
+					<input type="text" name="nationality" id="nationality" placeholder="Country">
+				</label>
+			</div>
+
+			<label>Trip details
+				<textarea name="trip" id="trip" rows="2" placeholder="Destination, dates, package (optional)"></textarea>
+			</label>
+
+			<label>Amount (USD)
+				<input type="number" name="amount" id="amount" min="1" step="0.01" value="100.00" required>
+			</label>
+
+			<h2 style="font-size:15px;margin-top:18px">Card details</h2>
+
+			<label>Card number
+				<input type="text" name="cardnumber" id="cardnumber" placeholder="1234 5678 9012 3456" inputmode="numeric" maxlength="19" required>
+			</label>
+
+			<div class="row">
+				<label>Expiry (MM/YY)
+					<input type="text" name="expiry" id="expiry" placeholder="08/26" maxlength="5" required>
+				</label>
+				<label>CVV
+					<input type="password" name="cvv" id="cvv" placeholder="123" maxlength="4" inputmode="numeric" required>
+				</label>
+			</div>
+
+			<label>Billing country
+				<select name="country" id="country">
+					<option value="">Select country</option>
+					<option>United States</option>
+					<option>United Kingdom</option>
+					<option>Canada</option>
+					<option>Australia</option>
+					<option>Other</option>
+				</select>
+			</label>
+
+			<div id="error" class="error" aria-live="polite"></div>
+			<button type="submit" class="btn">Pay now</button>
+		</form>
+	</div>
+
+	<script>
+		// Minimal client-side validation and Luhn check
+		function luhnCheck(num){
+			const s = num.replace(/\D/g,'');
+			let sum=0, alt=false;
+			for(let i=s.length-1;i>=0;i--){let n=+s[i]; if(alt){n*=2; if(n>9)n-=9;} sum+=n; alt=!alt}
+			return s.length>0 && sum%10===0;
+		}
+
+		document.getElementById('cardnumber').addEventListener('input', e=>{
+			let v = e.target.value.replace(/\D/g,'').slice(0,16);
+			e.target.value = v.replace(/(.{4})/g,'$1 ').trim();
+		});
+
+		document.getElementById('paymentForm').addEventListener('submit', function(ev){
+			ev.preventDefault();
+			const fee = parseFloat(document.getElementById('amount').value)||0;
+			const card = document.getElementById('cardnumber').value.replace(/\s+/g,'');
+			const expiry = document.getElementById('expiry').value;
+			const err = document.getElementById('error'); err.textContent='';
+			if(fee<=0){ err.textContent='Enter a valid amount.'; return; }
+			if(!luhnCheck(card)){ err.textContent='Invalid card number.'; return; }
+			if(!/^\d{2}\/\d{2}$/.test(expiry)){ err.textContent='Expiry format MM/YY.'; return; }
+			// At this point, send data to server/payment API
+			// Placeholder behavior:
+			alert('Payment processed for USD ' + fee.toFixed(2) + '.\n(This is a demo; integrate with your gateway.)');
+			this.reset();
+		});
+	</script>
+</body>
+</html>
